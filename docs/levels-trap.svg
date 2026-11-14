@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 320" width="860" height="320">
+  <rect width="860" height="320" fill="#ffffff"/>
+  <text x="30" y="40" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="18" font-weight="600" fill="#1f2328">最容易被误判的一处：Levels 不是数组</text>
+  <text x="30" y="64" font-family="'Microsoft YaHei','PingFang SC',sans-serif" font-size="12" fill="#59636e">WmiMonitorBrightness 类有两个属性，名字只差一个 s，含义完全不同</text>
+
+  <!-- wrong -->
+  <rect x="30" y="86" width="385" height="206" rx="8" fill="#ffebe9" stroke="#cf222e" stroke-width="1.5"/>
+  <text x="48" y="114" font-family="'Microsoft YaHei',sans-serif" font-size="15" font-weight="600" fill="#cf222e">✗ 错误读法</text>
+  <text x="48" y="146" font-family="Consolas,monospace" font-size="13" fill="#1f2328">$b.Levels</text>
+  <text x="330" y="146" text-anchor="end" font-family="Consolas,monospace" font-size="13" fill="#1f2328">101</text>
+  <text x="48" y="176" font-family="Consolas,monospace" font-size="13" fill="#1f2328">$b.Levels.Count</text>
+  <text x="330" y="176" text-anchor="end" font-family="Consolas,monospace" font-size="13" font-weight="600" fill="#cf222e">1</text>
+  <line x1="48" y1="192" x2="397" y2="192" stroke="#cf222e" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="48" y="216" font-family="'Microsoft YaHei',sans-serif" font-size="12" fill="#1f2328">得出：亮度接口只剩 1 个档位，接口坏了</text>
+  <text x="48" y="240" font-family="'Microsoft YaHei',sans-serif" font-size="12" font-weight="600" fill="#cf222e">然后去重装显卡驱动 —— 全部白做</text>
+  <text x="48" y="270" font-family="'Microsoft YaHei',sans-serif" font-size="11" fill="#59636e">Levels 是 uint32，表示档位【数量】</text>
+
+  <!-- right -->
+  <rect x="445" y="86" width="385" height="206" rx="8" fill="#dafbe1" stroke="#1a7f37" stroke-width="1.5"/>
+  <text x="463" y="114" font-family="'Microsoft YaHei',sans-serif" font-size="15" font-weight="600" fill="#1a7f37">✓ 正确读法</text>
+  <text x="463" y="146" font-family="Consolas,monospace" font-size="13" fill="#1f2328">$b.Level</text>
+  <text x="745" y="146" text-anchor="end" font-family="Consolas,monospace" font-size="12" fill="#1f2328">0,1,2,...,100</text>
+  <text x="463" y="176" font-family="Consolas,monospace" font-size="13" fill="#1f2328">$b.Level.Length</text>
+  <text x="745" y="176" text-anchor="end" font-family="Consolas,monospace" font-size="13" font-weight="600" fill="#1a7f37">101</text>
+  <line x1="463" y1="192" x2="812" y2="192" stroke="#1a7f37" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="463" y="216" font-family="'Microsoft YaHei',sans-serif" font-size="12" fill="#1f2328">得出：101 个档位齐全，接口完全正常</text>
+  <text x="463" y="240" font-family="'Microsoft YaHei',sans-serif" font-size="12" font-weight="600" fill="#1a7f37">问题不在这一层，往用户态服务方向查</text>
+  <text x="463" y="270" font-family="'Microsoft YaHei',sans-serif" font-size="11" fill="#59636e">Level 是 uint8[]，才是档位【数组】</text>
+</svg>
